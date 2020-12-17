@@ -1,0 +1,52 @@
+{
+  "name": "react-native-global-datetimepicker",
+  "version": "1.0.0",
+  "description": "react native multi culture datetime picker",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "react-native": "lib/index.js",
+  "scripts": {
+    "build": "tsc && cp src/GlobalDateTimePicker/Assets/*.png lib/GlobalDateTimePicker/Assets/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AliRezaBeigy/react-native-global-datetimepicker.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "datetimepicker",
+    "date-time-picker",
+    "timepicker",
+    "time-picker",
+    "datepicker",
+    "date-picker",
+    "shamsi",
+    "jalali",
+    "miladi",
+    "gregorian"
+  ],
+  "author": "AliRezaBeigy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AliRezaBeigy/react-native-global-datetimepicker/issues"
+  },
+  "homepage": "https://github.com/AliRezaBeigy/react-native-global-datetimepicker",
+  "dependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "eslint": "^7.14.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.2",
+    "@types/react": "^16.14.2",
+    "@types/react-native": "^0.63.37",
+    "eslint-plugin-prettier": "^3.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.1"
+  }
+}

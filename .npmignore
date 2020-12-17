@@ -1,0 +1,11 @@
+node_modules
+example
+src
+
+.idea
+.vscode
+.prettierrc.js
+yarn-error.log
+yarn.lock
+package-lock.json
+tsconfig.json
