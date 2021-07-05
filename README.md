@@ -16,6 +16,7 @@ A global, beautiful, customizable date and time picker for React Native.
 - Customizable translation
 - Support Jalali(Shamsi) and Gregorian
 
+# Demo
 <p align="center">
   <img src="asset/example.gif" alt="DateTimePicker" width="320">
 </p>
