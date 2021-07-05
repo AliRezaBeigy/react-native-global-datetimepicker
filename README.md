@@ -62,7 +62,7 @@ export default function App() {
                 setShowDateTimePicker(false);
                 setSelectedDateJalali(jalaliDate);
                 setSelectedDateGregorian(gregorianDate);
-            }} 
+            }}
             onCancel={() => setShowDateTimePicker(false)} 
         />
     );
@@ -89,17 +89,13 @@ export default function App() {
             visible={ShowDateTimePicker}
             calender={CalenderType.Jalali}
             theme={DateTimePickerThemes.Danger}
-            translation={
-                Calender === CalenderType.Jalali
-                    ? DateTimePickerTranslations.fa
-                    : DateTimePickerTranslations.DEFAULT
-            }
             initialDate={SelectedDateGregorian}
+            translation={DateTimePickerTranslations.fa}
             onSelect={(gregorianDate, jalaliDate) => {
                 setShowDateTimePicker(false);
                 setSelectedDateJalali(jalaliDate);
                 setSelectedDateGregorian(gregorianDate);
-            }} 
+            }}
             onCancel={() => setShowDateTimePicker(false)} 
         />
     );
