@@ -15,7 +15,7 @@ import GlobalDateTimePicker, {
   yearMonthsJalali,
   DateTimePickerThemes,
   DateTimePickerTranslations,
-} from 'react-native-global-datetimepicker';
+} from '../../src';
 
 export default function App() {
   const [Theme, setTheme] = useState(DateTimePickerThemes.MFCP);
@@ -70,7 +70,7 @@ export default function App() {
             }}
             thumbColor={Theme.HeaderBackground}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={(v) =>
+            onValueChange={() =>
               setCalender(
                 isGregorian ? CalenderType.Jalali : CalenderType.Gregorian,
               )

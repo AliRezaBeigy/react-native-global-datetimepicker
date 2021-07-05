@@ -8,11 +8,13 @@ export default StyleSheet.create({
   },
   gregorian_date_text: {
     fontSize: 32,
+    color: 'white',
     fontWeight: 'bold',
     marginBottom: '5%',
   },
   jalali_date_text: {
     fontSize: 32,
+    color: 'white',
     fontWeight: 'bold',
     marginBottom: '25%',
   },
@@ -43,6 +45,7 @@ export default StyleSheet.create({
     marginHorizontal: 10,
   },
   switch_text: {
+    color: 'white',
     fontWeight: '700',
   },
   themes_section: {
@@ -52,6 +55,7 @@ export default StyleSheet.create({
   },
   themes_title: {
     fontSize: 18,
+    color: 'white',
     fontWeight: 'bold',
   },
   themes: {
