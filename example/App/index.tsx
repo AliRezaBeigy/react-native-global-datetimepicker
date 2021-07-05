@@ -15,7 +15,7 @@ import GlobalDateTimePicker, {
   yearMonthsJalali,
   DateTimePickerThemes,
   DateTimePickerTranslations,
-} from '../../src';
+} from 'react-native-global-datetimepicker';
 
 export default function App() {
   const [Theme, setTheme] = useState(DateTimePickerThemes.MFCP);
