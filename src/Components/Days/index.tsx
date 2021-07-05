@@ -12,8 +12,9 @@ export interface Props {
 export default function Days({onPressDay}: Props) {
   const {month, year, persianNumber, selectedDate} = useDateTimePicker();
   const days = useMemo(() => getMonthDays(year, month, persianNumber), [
-    month,
     year,
+    month,
+    persianNumber,
   ]);
 
   return (

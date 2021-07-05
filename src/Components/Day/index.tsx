@@ -42,7 +42,10 @@ export default function Day({value, label, selected, onPressDay}: Props) {
         <Text
           ref={labelRef}
           style={[
-            {color: theme.DayText, fontSize: persianNumber ? 18 : 15},
+            {
+              color: theme.DayText,
+              fontSize: persianNumber ? 18 : 15,
+            },
             ...(selected
               ? [selectedDayTextStyle]
               : value?.toDateString() === today.toDateString()

@@ -9,13 +9,13 @@ export const weekDaysGregorian = [
 ];
 
 export const weekDaysJalali = [
-  {label: 'یکشنبه', value: 0},
-  {label: 'دوشنبه', value: 6},
-  {label: 'سه‌شنبه', value: 5},
-  {label: 'چهارشنبه', value: 4},
-  {label: 'پنجشنبه', value: 3},
-  {label: 'جمعه', value: 2},
-  {label: 'شنبه', value: 1},
+  {label: 'شنبه', value: 0},
+  {label: 'یکشنبه', value: 6},
+  {label: 'دوشنبه', value: 5},
+  {label: 'سه‌شنبه', value: 4},
+  {label: 'چهارشنبه', value: 3},
+  {label: 'پنجشنبه', value: 2},
+  {label: 'جمعه', value: 1},
 ];
 
 export const yearMonthsGregorian = [

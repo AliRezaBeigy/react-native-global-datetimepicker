@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import styles from './styles';
 import Header from '../Components/Header';
 import Buttons from '../Components/Buttons';
-import {Props} from '../index';
+import {Props} from '../GlobalDateTimePicker';
 import DayPicker from '../Components/DayPicker';
 import YearPicker from '../Components/YearPicker';
 import useDateTimePicker from '../Hooks/useDateTimePicker';
@@ -22,13 +22,8 @@ export default function GlobalDateTimePickerModal({
   onCancel,
   onSelect,
 }: Props) {
-  const {
-    mode,
-    calender,
-    selectedDate,
-    persianNumber,
-    setSelectedDate,
-  } = useDateTimePicker();
+  const {mode, calender, selectedDate, persianNumber, setSelectedDate} =
+    useDateTimePicker();
   const [Mode, setMode] = useState(mode);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const years = useMemo(

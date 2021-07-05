@@ -1,8 +1,5 @@
 export {default} from './GlobalDateTimePicker';
-export {
-    weekDaysJalali,
-    yearMonthsJalali,
-} from './GlobalDateTimePicker/Utilities/Contants';
-export {CalenderType} from './GlobalDateTimePicker/Providers/DateTimePickerProvider';
-export {default as DateTimePickerThemes} from './GlobalDateTimePicker/Utilities/Themes';
-export {default as DateTimePickerTranslations} from './GlobalDateTimePicker/Utilities/Translations';
+export {CalenderType} from './Providers/DateTimePickerProvider';
+export {default as DateTimePickerThemes} from './Utilities/Themes';
+export {weekDaysJalali, yearMonthsJalali} from './Utilities/Contants';
+export {default as DateTimePickerTranslations} from './Utilities/Translations';
