@@ -1,6 +1,6 @@
-<h1 style="text-align: center">Global DateTime Picker</h1>
+<h1 align="center">Global DateTime Picker</h1>
 
-<div style="text-align: center">
+<div align="center">
     <p><a href="https://github.com/AliRezaBeigy/react-native-global-datetimepicker/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="MIT License"></a>
     <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PR&#39;s Welcome"></a>
     <img src="https://img.shields.io/npm/v/react-native-global-datetimepicker?style=for-the-badge" alt="npm">
@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/github/stars/AliRezaBeigy/react-native-global-datetimepicker?style=for-the-badge" alt="GitHub Repo stars"></p>
 </div>
 
-A global, beautiful, customizable date and time picker for React Native.
+This package is a global, beautiful, customizable date and time picker for React Native.
 
 ## Features
 
@@ -126,7 +126,7 @@ const MFCP = {
     SelectedYearItemText: '#ff4d5b'
 }
 ```
-- `translation` prop is an object that contains the text of each part of the component, there are two languages supported units now that you can import as **DateTimePickerTranslations** and use them, the currently available language is **English** and **Persian**.
+- `translation` prop is an object that contains the text of each part of the component. There are two languages supported units now that you can import as **DateTimePickerTranslations** and use them. The currently available language is **English** and **Persian**.
 
 # TODO
 - [ ] Support time picker
