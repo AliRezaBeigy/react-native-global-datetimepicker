@@ -9,22 +9,16 @@ import {
 import {Pressable, Text, View} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
 import {
-  CalenderType,
+  CalendarType,
   DateTimePickerMode,
 } from '../../Providers/DateTimePickerProvider';
 import {toPersianNumber} from '../../Utilities';
 
 function Header() {
-  const {
-    mode,
-    theme,
-    setMode,
-    calender,
-    selectedDate,
-    persianNumber,
-  } = useDateTimePicker();
+  const {mode, theme, setMode, calendar, selectedDate, persianNumber} =
+    useDateTimePicker();
   const date = useMemo(() => {
-    let isGregorian = calender === CalenderType.Gregorian;
+    let isGregorian = calendar === CalendarType.Gregorian;
     let weekDays = isGregorian ? weekDaysGregorian : weekDaysJalali;
 
     let month = isGregorian
@@ -42,14 +36,14 @@ function Header() {
     <View
       style={[
         {backgroundColor: theme.HeaderBackground},
-        ...(calender === CalenderType.Gregorian
+        ...(calendar === CalendarType.Gregorian
           ? []
           : [styles.header_container_jalali]),
       ]}>
       <Pressable
         style={[
           styles.header,
-          ...(calender === CalenderType.Gregorian
+          ...(calendar === CalendarType.Gregorian
             ? []
             : [styles.header_container_jalali]),
         ]}

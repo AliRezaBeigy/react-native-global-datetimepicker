@@ -8,7 +8,7 @@ import YearPicker from '../Components/YearPicker';
 import useDateTimePicker from '../Hooks/useDateTimePicker';
 import {Animated, Modal, Pressable, View} from 'react-native';
 import {
-  CalenderType,
+  CalendarType,
   DateTimePickerMode,
 } from '../Providers/DateTimePickerProvider';
 import {
@@ -22,21 +22,21 @@ export default function GlobalDateTimePickerModal({
   onCancel,
   onSelect,
 }: Props) {
-  const {mode, calender, selectedDate, persianNumber, setSelectedDate} =
+  const {mode, calendar, selectedDate, persianNumber, setSelectedDate} =
     useDateTimePicker();
   const [Mode, setMode] = useState(mode);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const years = useMemo(
     () =>
       Array.from({length: 200}, (_, k) => k + 1)
-        .map((v) => v + (calender === CalenderType.Gregorian ? 1900 : 1300))
+        .map((v) => v + (calendar === CalendarType.Gregorian ? 1900 : 1300))
         .map((i) => {
           return {
             value: i,
             label: persianNumber ? toPersianNumber(`${i}`) : `${i}`,
           };
         }),
-    [calender],
+    [calendar],
   );
 
   const onPressDay = (value: Date) => {
@@ -49,7 +49,7 @@ export default function GlobalDateTimePickerModal({
   };
   const onOk = () => {
     if (onSelect) {
-      if (calender === CalenderType.Jalali)
+      if (calendar === CalendarType.Jalali)
         onSelect(convertJalaliToGregorian(selectedDate), selectedDate);
       else onSelect(selectedDate, convertGregorianToJalali(selectedDate));
     }

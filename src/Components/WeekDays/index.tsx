@@ -3,14 +3,14 @@ import styles from './styles';
 import {Text, View} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
 import {weekDaysGregorian, weekDaysJalali} from '../../Utilities/Contants';
-import {CalenderType} from '../../Providers/DateTimePickerProvider';
+import {CalendarType} from '../../Providers/DateTimePickerProvider';
 
 function WeekDays() {
-  const {calender, theme} = useDateTimePicker();
+  const {calendar, theme} = useDateTimePicker();
   return (
     <View style={styles.week_days}>
       {[
-        ...(calender === CalenderType.Gregorian
+        ...(calendar === CalendarType.Gregorian
           ? weekDaysGregorian
           : weekDaysJalali),
       ]

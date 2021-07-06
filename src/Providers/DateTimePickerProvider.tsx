@@ -3,7 +3,7 @@ import Themes from '../Utilities/Themes';
 import Translations from '../Utilities/Translations';
 import {convertGregorianToJalali} from '../Utilities';
 
-export enum CalenderType {
+export enum CalendarType {
   Gregorian,
   Jalali,
 }
@@ -18,7 +18,7 @@ interface DateTimePickerState {
   year: number;
   month: number;
   selectedDate: Date;
-  calender: CalenderType;
+  calendar: CalendarType;
   persianNumber: boolean;
   mode: DateTimePickerMode;
   theme: typeof Themes.Primary;
@@ -35,8 +35,8 @@ export interface IDateTimePickerProvider extends DateTimePickerState {
 
 const currentDate = new Date();
 
-export const DateTimePickerContext = React.createContext<IDateTimePickerProvider>(
-  {
+export const DateTimePickerContext =
+  React.createContext<IDateTimePickerProvider>({
     month: 0,
     year: 2020,
     persianNumber: false,
@@ -48,15 +48,14 @@ export const DateTimePickerContext = React.createContext<IDateTimePickerProvider
     mode: DateTimePickerMode.Day,
     setYearMonth: () => undefined,
     setSelectedDate: () => undefined,
-    calender: CalenderType.Gregorian,
+    calendar: CalendarType.Gregorian,
     translation: Translations.DEFAULT,
-  },
-);
+  });
 
 interface Props {
   initialDate?: Date;
   persianNumber?: boolean;
-  calender?: CalenderType;
+  calendar?: CalendarType;
   theme?: typeof Themes.Primary;
   translation?: typeof Translations.DEFAULT;
 }
@@ -66,12 +65,12 @@ const DateTimePickerProvider: React.FC<Props> = ({
   persianNumber = false,
   theme = Themes.Primary,
   initialDate = currentDate,
-  calender = CalenderType.Gregorian,
+  calendar = CalendarType.Gregorian,
   translation = Translations.DEFAULT,
 }) => {
   const [DateTimePicker, setDateTimePicker] = useState<DateTimePickerState>({
     theme: theme,
-    calender: calender,
+    calendar: calendar,
     translation: translation,
     selectedDate: initialDate,
     mode: DateTimePickerMode.Day,
@@ -82,20 +81,20 @@ const DateTimePickerProvider: React.FC<Props> = ({
 
   useEffect(() => {
     let date =
-      calender === CalenderType.Gregorian || initialDate.getFullYear() < 1900
+      calendar === CalendarType.Gregorian || initialDate.getFullYear() < 1900
         ? initialDate
         : convertGregorianToJalali(initialDate);
     setDateTimePicker({
       ...DateTimePicker,
       theme: theme,
-      calender: calender,
+      calendar: calendar,
       selectedDate: date,
       month: date.getMonth(),
       year: date.getFullYear(),
       translation: translation,
       persianNumber: persianNumber,
     });
-  }, [calender, persianNumber, translation, theme]);
+  }, [calendar, persianNumber, translation, theme]);
 
   return (
     <DateTimePickerContext.Provider
@@ -104,7 +103,7 @@ const DateTimePickerProvider: React.FC<Props> = ({
         year: DateTimePicker.year,
         month: DateTimePicker.month,
         theme: DateTimePicker.theme,
-        calender: DateTimePicker.calender,
+        calendar: DateTimePicker.calendar,
         translation: DateTimePicker.translation,
         selectedDate: DateTimePicker.selectedDate,
         persianNumber: DateTimePicker.persianNumber,

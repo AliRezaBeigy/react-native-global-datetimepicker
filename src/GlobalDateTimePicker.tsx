@@ -1,6 +1,6 @@
 import React from 'react';
 import DateTimePickerProvider, {
-  CalenderType,
+  CalendarType,
 } from './Providers/DateTimePickerProvider';
 import Themes from './Utilities/Themes';
 import Translations from './Utilities/Translations';
@@ -11,7 +11,7 @@ export interface Props {
   initialDate?: Date;
   onCancel?: () => void;
   persianNumber?: boolean;
-  calender?: CalenderType;
+  calendar?: CalendarType;
   theme?: typeof Themes.Primary;
   translation?: typeof Translations.DEFAULT;
   onSelect?: (gregorianDate: Date, jalaliDate: Date) => void;
@@ -19,7 +19,7 @@ export interface Props {
 
 export default function GlobalDateTimePicker({
   theme,
-  calender,
+  calendar,
   initialDate,
   translation,
   persianNumber,
@@ -28,7 +28,7 @@ export default function GlobalDateTimePicker({
   return (
     <DateTimePickerProvider
       theme={theme}
-      calender={calender}
+      calendar={calendar}
       initialDate={initialDate}
       translation={translation}
       persianNumber={persianNumber}>

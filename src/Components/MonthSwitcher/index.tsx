@@ -4,19 +4,12 @@ import Assets from '../../Assets';
 import {toPersianNumber} from '../../Utilities';
 import {Image, Pressable, Text, View} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
-import {CalenderType} from '../../Providers/DateTimePickerProvider';
+import {CalendarType} from '../../Providers/DateTimePickerProvider';
 import {yearMonthsJalali, yearMonthsGregorian} from '../../Utilities/Contants';
 
 export default function MonthSwitcher() {
-  const {
-    year,
-    theme,
-    month,
-    calender,
-    setMonth,
-    setYearMonth,
-    persianNumber,
-  } = useDateTimePicker();
+  const {year, theme, month, calendar, setMonth, setYearMonth, persianNumber} =
+    useDateTimePicker();
 
   return (
     <View style={styles.months}>
@@ -29,7 +22,7 @@ export default function MonthSwitcher() {
       </View>
       <Text style={styles.months_text}>
         {
-          (calender === CalenderType.Gregorian
+          (calendar === CalendarType.Gregorian
             ? yearMonthsGregorian
             : yearMonthsJalali)[month]
         }{' '}

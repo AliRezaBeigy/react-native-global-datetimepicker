@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useRef} from 'react';
 import styles from './styles';
 import {FlatList, Pressable, Text} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
-import {CalenderType} from '../../Providers/DateTimePickerProvider';
+import {CalendarType} from '../../Providers/DateTimePickerProvider';
 
 interface Props {
   years: {value: number; label: string}[];
@@ -10,7 +10,7 @@ interface Props {
 
 export default function YearPicker({years}: Props) {
   const listRef = useRef<FlatList>(null);
-  const {year, theme, setYear, calender} = useDateTimePicker();
+  const {year, theme, setYear, calendar} = useDateTimePicker();
   const itemRender = useCallback(
     ({item}) => (
       <Pressable
@@ -41,7 +41,7 @@ export default function YearPicker({years}: Props) {
         animated,
         viewPosition: 0,
         viewOffset: 4 * 48,
-        index: index - (calender === CalenderType.Gregorian ? 1900 : 1300),
+        index: index - (calendar === CalendarType.Gregorian ? 1900 : 1300),
       });
     }
   };

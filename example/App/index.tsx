@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import GlobalDateTimePicker, {
-  CalenderType,
+  CalendarType,
   weekDaysJalali,
   yearMonthsJalali,
   DateTimePickerThemes,
@@ -19,12 +19,12 @@ import GlobalDateTimePicker, {
 
 export default function App() {
   const [Theme, setTheme] = useState(DateTimePickerThemes.MFCP);
-  const [Calender, setCalender] = useState(CalenderType.Gregorian);
+  const [Calendar, setCalendar] = useState(CalendarType.Gregorian);
   const [SelectedDateJalali, setSelectedDateJalali] = useState<Date>();
   const [SelectedDateGregorian, setSelectedDateGregorian] = useState<Date>();
   const [ShowDateTimePicker, setShowDateTimePicker] = useState(false);
 
-  let isGregorian = Calender === CalenderType.Gregorian;
+  let isGregorian = Calendar === CalendarType.Gregorian;
 
   return (
     <>
@@ -71,8 +71,8 @@ export default function App() {
             thumbColor={Theme.HeaderBackground}
             ios_backgroundColor="#3e3e3e"
             onValueChange={() =>
-              setCalender(
-                isGregorian ? CalenderType.Jalali : CalenderType.Gregorian,
+              setCalendar(
+                isGregorian ? CalendarType.Jalali : CalendarType.Gregorian,
               )
             }
             value={I18nManager.isRTL ? !isGregorian : isGregorian}
@@ -122,12 +122,12 @@ export default function App() {
         </View>
         <GlobalDateTimePicker
           theme={Theme}
-          calender={Calender}
+          calendar={Calendar}
           visible={ShowDateTimePicker}
           initialDate={SelectedDateGregorian}
-          persianNumber={Calender === CalenderType.Jalali}
+          persianNumber={Calendar === CalendarType.Jalali}
           translation={
-            Calender === CalenderType.Jalali
+            Calendar === CalendarType.Jalali
               ? DateTimePickerTranslations.fa
               : DateTimePickerTranslations.DEFAULT
           }

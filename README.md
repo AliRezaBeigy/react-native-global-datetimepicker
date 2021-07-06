@@ -35,7 +35,7 @@ $ npm i react-native-global-datetimepicker
 After the installation, it's time to import the package in your app:
 ```ts
 import GlobalDateTimePicker, {
-    CalenderType,
+    CalendarType,
     weekDaysJalali,
     yearMonthsJalali,
     DateTimePickerThemes,
@@ -68,10 +68,10 @@ export default function App() {
     );
 }
 ```
-- `visible` prop is the state of visibility of date picker
-- `initialDate` prop is the initial value for date picker, **this date value should be gregorian**
-- `onSelect` prop is function which will take care of changing the date by user
-- `onCancel` prop is function which will take care of dismiss date picker by user
+- `visible` prop is the state of visibility of the date picker
+- `initialDate` prop is the initial value for the date picker, **this date value should be gregorian**
+- `onSelect` prop is a function that will take care of changing the date by the user
+- `onCancel` prop is a function that will take care of dismissing date picker by the user
 
 # Advanced Usage
 Let's give an advanced example to use
@@ -87,7 +87,7 @@ export default function App() {
         <GlobalDateTimePicker
             persianNumber={true}
             visible={ShowDateTimePicker}
-            calender={CalenderType.Jalali}
+            calendar={CalendarType.Jalali}
             theme={DateTimePickerThemes.Danger}
             initialDate={SelectedDateGregorian}
             translation={DateTimePickerTranslations.fa}
@@ -101,13 +101,13 @@ export default function App() {
     );
 }
 ```
-- `persianNumber` prop enable the converter that convert english number to arabic number
-- `calender` prop is the type of calendar the date picker should be used, there is two type of calendar 
-  type available in library that you can import as **CalenderType**, the current calendar 
+- `persianNumber` prop enables the converter that converts English number to Arabic number
+- `calendar` prop is the type of calendar the date picker should be used, there are two types of calendar
+  type available in the library that you can import as **CalendarType**, the current calendar
   type is **Gregorian** and **Jalali**, default calendar type is **Gregorian**
-- `theme` prop is an object contains the color of each part of component, there is three theme available
-  in library that you can import as **DateTimePickerThemes** and use them, the current available theme 
-  is **Primary** and **Danger** and **MFCP**, default theme is **Primary**, also you can create your
+- `theme` prop is an object that contains the color of each part of the component, there are three themes available
+  in the library that you can import as **DateTimePickerThemes** and use them, the currently available theme
+  is **Primary** and **Danger** and **MFCP**, the default theme is **Primary**, also you can create your
   own theme, the interface is like:
 ```js
 const MFCP = {
@@ -126,13 +126,13 @@ const MFCP = {
     SelectedYearItemText: '#ff4d5b'
 }
 ```
-- `translation` prop is an object contains the text of each part of component, there is two language supported unit now that you can import as **DateTimePickerTranslations** and use them, the current available language is **English** and **Persian**.
+- `translation` prop is an object that contains the text of each part of the component, there are two languages supported units now that you can import as **DateTimePickerTranslations** and use them, the currently available language is **English** and **Persian**.
 
 # TODO
 - [ ] Support time picker
 
 ## Contributions
-If you're interested in contributing to this project, first of all I would like to extend my heartfelt gratitude.
+If you're interested in contributing to this project, first of all, I would like to extend my heartfelt gratitude.
 
 Please feel free to reach out to me if you need help. My Email: AliRezaBeigyKhu@gmail.com
 Telegram: [@AliRezaBeigy](https://t.me/AliRezaBeigyKhu)
