@@ -122,6 +122,7 @@ const MFCP = {
     SelectedDayText: '#ffffff',
     SelectDayRipple: '#ff4d5b',
     HeaderBackground: '#ff4d5b',
+    ContentBackground: '#ffffff',
     HeaderSelectedMode: '#ffffff',
     SelectedYearItemText: '#ff4d5b'
 }
