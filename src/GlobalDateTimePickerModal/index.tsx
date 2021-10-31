@@ -22,7 +22,7 @@ export default function GlobalDateTimePickerModal({
   onCancel,
   onSelect,
 }: Props) {
-  const {mode, calendar, selectedDate, persianNumber, setSelectedDate} =
+  const {mode, calendar, selectedDate, persianNumber, setSelectedDate, theme} =
     useDateTimePicker();
   const [Mode, setMode] = useState(mode);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -95,7 +95,7 @@ export default function GlobalDateTimePickerModal({
         <View style={styles.container}>
           <Pressable>
             <Header />
-            <View style={styles.content}>
+            <View style={{backgroundColor: theme.ContentBackground}}>
               <Animated.View
                 style={{
                   opacity: fadeAnim,
