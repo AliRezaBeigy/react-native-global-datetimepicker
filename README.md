@@ -141,8 +141,10 @@ Telegram: [@AliRezaBeigy](https://t.me/AliRezaBeigyKhu)
 ## Build And Test
 Use the following command to build and run the example project
 ```shell
+$ yarn
 $ yarn build # If you have error about cp command, copy src/Assets/*.png to lib/Assets manually
 $ cd example
+$ yarn
 $ yarn run android
 ```
 

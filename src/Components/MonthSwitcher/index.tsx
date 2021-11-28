@@ -20,7 +20,7 @@ export default function MonthSwitcher() {
           <Image source={Assets.back()} style={styles.arrow} />
         </Pressable>
       </View>
-      <Text style={styles.months_text}>
+      <Text style={[styles.months_text, {color: theme.DayText}]}>
         {
           (calendar === CalendarType.Gregorian
             ? yearMonthsGregorian
