@@ -14,7 +14,7 @@ import {
 } from '../../Providers/DateTimePickerProvider';
 import {toPersianNumber} from '../../Utilities';
 
-function Header() {
+function DateHeader() {
   const {mode, theme, setMode, calendar, selectedDate, persianNumber} =
     useDateTimePicker();
   const date = useMemo(() => {
@@ -85,4 +85,4 @@ function Header() {
   );
 }
 
-export default memo(Header);
+export default memo(DateHeader);

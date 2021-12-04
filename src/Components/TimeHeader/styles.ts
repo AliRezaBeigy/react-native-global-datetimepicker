@@ -1,25 +1,23 @@
 import {I18nManager, StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  years: {
-    width: 279,
-    height: 340,
-    flexGrow: 0,
+  container: {
+    width: 303,
+    height: 110,
   },
-  year_item: {
-    height: 40,
+  header: {
+    padding: 15,
     width: '100%',
+  },
+  input_container: {
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  year_item_text: {
-    fontSize: 16,
-  },
-  selected_year: {
-    fontSize: 22,
-    fontWeight: 'bold',
-  },
-  content_container: {
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+  },
+  time_splitter: {
+    fontSize: 45,
+    paddingBottom: 5,
+    marginHorizontal: 3,
   },
 });

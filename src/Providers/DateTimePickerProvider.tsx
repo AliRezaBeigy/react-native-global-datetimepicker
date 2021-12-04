@@ -11,7 +11,8 @@ export enum CalendarType {
 export enum DateTimePickerMode {
   Day,
   Year,
-  Time,
+  Hour,
+  Minute,
 }
 
 interface DateTimePickerState {
@@ -28,6 +29,8 @@ interface DateTimePickerState {
 export interface IDateTimePickerProvider extends DateTimePickerState {
   setYear: (year: number) => void;
   setMonth: (month: number) => void;
+  setHour: (minute: number) => void;
+  setMinute: (minute: number) => void;
   setSelectedDate: (date: Date) => void;
   setMode: (mode: DateTimePickerMode) => void;
   setYearMonth: (year: number, month: number) => void;
@@ -41,10 +44,12 @@ export const DateTimePickerContext =
     year: 2020,
     persianNumber: false,
     theme: Themes.Primary,
+    setHour: () => undefined,
     setMode: () => undefined,
     setYear: () => undefined,
     selectedDate: currentDate,
     setMonth: () => undefined,
+    setMinute: () => undefined,
     mode: DateTimePickerMode.Day,
     setYearMonth: () => undefined,
     setSelectedDate: () => undefined,
@@ -56,6 +61,7 @@ interface Props {
   initialDate?: Date;
   persianNumber?: boolean;
   calendar?: CalendarType;
+  mode?: DateTimePickerMode;
   theme?: typeof Themes.Primary;
   translation?: typeof Translations.DEFAULT;
 }
@@ -65,15 +71,16 @@ const DateTimePickerProvider: React.FC<Props> = ({
   persianNumber = false,
   theme = Themes.Primary,
   initialDate = currentDate,
+  mode = DateTimePickerMode.Day,
   calendar = CalendarType.Gregorian,
   translation = Translations.DEFAULT,
 }) => {
   const [DateTimePicker, setDateTimePicker] = useState<DateTimePickerState>({
+    mode: mode,
     theme: theme,
     calendar: calendar,
     translation: translation,
     selectedDate: initialDate,
-    mode: DateTimePickerMode.Day,
     persianNumber: persianNumber,
     month: initialDate.getMonth(),
     year: initialDate.getFullYear(),
@@ -86,6 +93,7 @@ const DateTimePickerProvider: React.FC<Props> = ({
         : convertGregorianToJalali(initialDate);
     setDateTimePicker({
       ...DateTimePicker,
+      mode: mode,
       theme: theme,
       calendar: calendar,
       selectedDate: date,
@@ -94,7 +102,7 @@ const DateTimePickerProvider: React.FC<Props> = ({
       translation: translation,
       persianNumber: persianNumber,
     });
-  }, [calendar, persianNumber, translation, theme]);
+  }, [calendar, persianNumber, translation, theme, mode]);
 
   return (
     <DateTimePickerContext.Provider
@@ -107,7 +115,7 @@ const DateTimePickerProvider: React.FC<Props> = ({
         translation: DateTimePicker.translation,
         selectedDate: DateTimePicker.selectedDate,
         persianNumber: DateTimePicker.persianNumber,
-        setYear: (year) => {
+        setYear: year => {
           DateTimePicker.selectedDate.setFullYear(year);
           setDateTimePicker({
             ...DateTimePicker,
@@ -116,13 +124,27 @@ const DateTimePickerProvider: React.FC<Props> = ({
             selectedDate: DateTimePicker.selectedDate,
           });
         },
-        setMode: (mode) => {
+        setHour: hour => {
+          DateTimePicker.selectedDate.setHours(hour);
+          setDateTimePicker({
+            ...DateTimePicker,
+            selectedDate: new Date(DateTimePicker.selectedDate),
+          });
+        },
+        setMinute: minute => {
+          DateTimePicker.selectedDate.setMinutes(minute);
+          setDateTimePicker({
+            ...DateTimePicker,
+            selectedDate: new Date(DateTimePicker.selectedDate),
+          });
+        },
+        setMode: mode => {
           setDateTimePicker({...DateTimePicker, mode: mode});
         },
-        setMonth: (month) => {
+        setMonth: month => {
           setDateTimePicker({...DateTimePicker, month: month});
         },
-        setSelectedDate: (date) => {
+        setSelectedDate: date => {
           setDateTimePicker({...DateTimePicker, selectedDate: date});
         },
         setYearMonth: (year, month) => {

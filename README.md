@@ -12,13 +12,16 @@ This package is a global, beautiful, customizable date and time picker for React
 
 ## Features
 
+- Time Picker
+- Date Picker
 - Customizable theme
 - Customizable translation
 - Support Jalali(Shamsi) and Gregorian
 
 # Demo
 <p align="center">
-  <img src="asset/example.gif" alt="DateTimePicker" width="320">
+  <img src="asset/jalali.gif" alt="DateTimePicker" width="320">
+  <img src="asset/gregorian.gif" alt="DateTimePicker" width="320">
 </p>
 
 # Installation
@@ -38,6 +41,7 @@ import GlobalDateTimePicker, {
     CalendarType,
     weekDaysJalali,
     yearMonthsJalali,
+    DateTimePickerMode,
     DateTimePickerThemes,
     DateTimePickerTranslations,
 } from 'react-native-global-datetimepicker';
@@ -77,17 +81,19 @@ export default function App() {
 Let's give an advanced example to use
 ```tsx
 import React, {useState} from "react";
-import GlobalDateTimePicker from 'react-native-global-datetimepicker';
+import GlobalDateTimePicker, {DateTimePickerMode} from 'react-native-global-datetimepicker';
 
 export default function App() {
-    const [ShowDateTimePicker, setShowDateTimePicker] = useState(false);
     const [SelectedDateJalali, setSelectedDateJalali] = useState<Date>();
     const [SelectedDateGregorian, setSelectedDateGregorian] = useState<Date>();
+    const [PickerMode, setPickerMode] = useState<DateTimePickerMode>(DateTimePickerMode.Day);
+
     return (
         <GlobalDateTimePicker
+            mode={PickerMode}
             persianNumber={true}
-            visible={ShowDateTimePicker}
             calendar={CalendarType.Jalali}
+            visible={PickerMode !== undefined}
             theme={DateTimePickerThemes.Danger}
             initialDate={SelectedDateGregorian}
             translation={DateTimePickerTranslations.fa}
@@ -124,13 +130,19 @@ const MFCP = {
     HeaderBackground: '#ff4d5b',
     ContentBackground: '#ffffff',
     HeaderSelectedMode: '#ffffff',
-    SelectedYearItemText: '#ff4d5b'
+    SelectedYearItemText: '#ff4d5b',
+    TimeSeparator: '#ffb5b7',
+    TimeInputForeground: '#ff4d5b',
+    TimeInputBackground: '#ffb5b7',
+    TimeInputFocusForeground: '#3b3b3b',
+    TimeInputFocusBackground: '#ffe7e7',
+    SelectedClockForeground: '#ffffff',
+    ClockForeground: '#3b3b3b',
+    ClockBackground: '#ffe7e7',
+    ClockPointer: '#ff4d5b'
 }
 ```
 - `translation` prop is an object that contains the text of each part of the component. There are two languages supported units now that you can import as **DateTimePickerTranslations** and use them. The currently available language is **English** and **Persian**.
-
-# TODO
-- [ ] Support time picker
 
 ## Contributions
 If you're interested in contributing to this project, first of all, I would like to extend my heartfelt gratitude.

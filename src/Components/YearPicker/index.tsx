@@ -1,8 +1,9 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './styles';
-import {FlatList, Pressable, Text} from 'react-native';
+import {FlatList} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
 import {CalendarType} from '../../Providers/DateTimePickerProvider';
+import Year from '../Year';
 
 interface Props {
   years: {value: number; label: string}[];
@@ -10,38 +11,23 @@ interface Props {
 
 export default function YearPicker({years}: Props) {
   const listRef = useRef<FlatList>(null);
-  const {year, theme, setYear, calendar} = useDateTimePicker();
-  const itemRender = useCallback(
-    ({item}) => (
-      <Pressable
-        style={styles.year_item}
-        onPress={() => {
-          setYear(item.value);
-          scrollTo(item.value, true);
-        }}
-        android_ripple={{borderless: false, color: theme.ButtonRipple}}>
-        <Text
-          style={[
-            styles.year_item_text,
-            {color: theme.YearItemText},
-            ...(item.value === year
-              ? [styles.selected_year, {color: theme.SelectedYearItemText}]
-              : []),
-          ]}>
-          {item.label}
-        </Text>
-      </Pressable>
-    ),
-    [],
-  );
+  const {year, selectedDate, setYear, calendar} = useDateTimePicker();
 
   const scrollTo = (index: number, animated: boolean) => {
     if (listRef.current) {
+      let scrollIndex =
+        Math.ceil(
+          (index - (calendar === CalendarType.Gregorian ? 1900 : 1300)) / 3,
+        ) + 0.75;
+      const maxIndex = Math.ceil(years.length / 3) - 1;
+      if (maxIndex < scrollIndex) {
+        scrollIndex = maxIndex;
+      }
       listRef.current.scrollToIndex({
         animated,
         viewPosition: 0,
-        viewOffset: 4 * 48,
-        index: index - (calendar === CalendarType.Gregorian ? 1900 : 1300),
+        viewOffset: 4 * 60,
+        index: scrollIndex,
       });
     }
   };
@@ -54,17 +40,29 @@ export default function YearPicker({years}: Props) {
     <FlatList
       data={years}
       ref={listRef}
+      numColumns={3}
       style={styles.years}
+      columnWrapperStyle={styles.content_container}
       getItemLayout={(_, index) => {
         return {
-          length: 48,
-          offset: index * 48,
+          length: 60,
+          offset: index * 60,
           index,
         };
       }}
-      renderItem={itemRender}
+      renderItem={({item}) => (
+        <Year
+          value={item.value}
+          label={item.label}
+          onPressYear={() => {
+            setYear(item.value);
+            scrollTo(item.value, true);
+          }}
+          selected={item?.value === selectedDate?.getFullYear()}
+        />
+      )}
       keyboardShouldPersistTaps="handled"
-      keyExtractor={(item) => item.label}
+      keyExtractor={item => item.label}
     />
   );
 }

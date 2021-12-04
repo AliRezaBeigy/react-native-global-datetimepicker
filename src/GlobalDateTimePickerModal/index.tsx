@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import styles from './styles';
-import Header from '../Components/Header';
 import Buttons from '../Components/Buttons';
 import {Props} from '../GlobalDateTimePicker';
 import DayPicker from '../Components/DayPicker';
@@ -16,6 +15,8 @@ import {
   convertJalaliToGregorian,
   toPersianNumber,
 } from '../Utilities';
+import TimePicker from '../Components/TimePicker';
+import DateHeader from '../Components/DateHeader';
 
 export default function GlobalDateTimePickerModal({
   visible,
@@ -29,8 +30,8 @@ export default function GlobalDateTimePickerModal({
   const years = useMemo(
     () =>
       Array.from({length: 200}, (_, k) => k + 1)
-        .map((v) => v + (calendar === CalendarType.Gregorian ? 1900 : 1300))
-        .map((i) => {
+        .map(v => v + (calendar === CalendarType.Gregorian ? 1900 : 1300))
+        .map(i => {
           return {
             value: i,
             label: persianNumber ? toPersianNumber(`${i}`) : `${i}`,
@@ -55,16 +56,6 @@ export default function GlobalDateTimePickerModal({
     }
   };
 
-  let picker;
-  switch (Mode) {
-    case DateTimePickerMode.Day:
-      picker = <DayPicker onPressDay={onPressDay} />;
-      break;
-    case DateTimePickerMode.Year:
-      picker = <YearPicker years={years} />;
-      break;
-  }
-
   useEffect(() => {
     const duration = 150;
     setTimeout(() => {
@@ -84,6 +75,45 @@ export default function GlobalDateTimePickerModal({
     }, duration);
   }, [mode]);
 
+  let content = null;
+
+  if (mode == DateTimePickerMode.Day || mode == DateTimePickerMode.Year) {
+    let picker;
+    switch (Mode) {
+      case DateTimePickerMode.Day:
+        picker = <DayPicker onPressDay={onPressDay} />;
+        break;
+      case DateTimePickerMode.Year:
+        picker = <YearPicker years={years} />;
+        break;
+    }
+    content = (
+      <>
+        <DateHeader />
+        <View
+          style={[styles.content, {backgroundColor: theme.ContentBackground}]}>
+          <Animated.View
+            style={{
+              opacity: fadeAnim,
+            }}>
+            {picker}
+          </Animated.View>
+          <Buttons onOk={onOk} onCancel={cancel} />
+        </View>
+      </>
+    );
+  }
+  if (mode == DateTimePickerMode.Hour || mode == DateTimePickerMode.Minute) {
+    content = (
+      <>
+        <TimePicker />
+        <View
+          style={[styles.content, {backgroundColor: theme.ContentBackground}]}>
+          <Buttons onOk={onOk} onCancel={cancel} />
+        </View>
+      </>
+    );
+  }
   return (
     <Modal
       visible={visible}
@@ -93,18 +123,7 @@ export default function GlobalDateTimePickerModal({
       onRequestClose={cancel}>
       <Pressable onPress={cancel} style={styles.container_pressable}>
         <View style={styles.container}>
-          <Pressable>
-            <Header />
-            <View style={{backgroundColor: theme.ContentBackground}}>
-              <Animated.View
-                style={{
-                  opacity: fadeAnim,
-                }}>
-                {picker}
-              </Animated.View>
-              <Buttons onOk={onOk} onCancel={cancel} />
-            </View>
-          </Pressable>
+          <Pressable>{content}</Pressable>
         </View>
       </Pressable>
     </Modal>

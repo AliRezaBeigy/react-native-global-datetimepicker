@@ -1,5 +1,5 @@
 const path = require('path');
-const blacklist = require('metro-config/src/defaults/blacklist');
+const exclusionList = require('metro-config/src/defaults/exclusionList');
 const escape = require('escape-string-regexp');
 const pak = require('../package.json');
 
@@ -13,7 +13,7 @@ module.exports = {
   projectRoot: __dirname,
   watchFolders: [root],
   resolver: {
-    blacklistRE: blacklist(
+    blockList: exclusionList(
       modules.map(
         m => new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`),
       ),

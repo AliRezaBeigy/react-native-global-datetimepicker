@@ -1,6 +1,6 @@
 {
   "name": "react-native-global-datetimepicker",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "react native multi culture datetime picker",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -36,18 +36,18 @@
   },
   "homepage": "https://github.com/AliRezaBeigy/react-native-global-datetimepicker",
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/runtime": "^7.14.6",
-    "react": "16.13.1",
-    "eslint": "^7.30.0",
-    "prettier": "^2.3.2",
-    "typescript": "^4.3.5",
-    "@types/react": "^17.0.13",
-    "react-native": "0.63.4",
-    "@types/react-native": "^0.64.10",
-    "eslint-plugin-prettier": "^3.4.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1"
+    "@babel/core": "^7.16.0",
+    "@babel/runtime": "^7.16.3",
+    "react": "17.0.2",
+    "eslint": "^8.3.0",
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2",
+    "@types/react": "^17.0.37",
+    "react-native": "0.66.3",
+    "@types/react-native": "^0.66.6",
+    "eslint-plugin-prettier": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0"
   },
   "peerDependencies": {
     "react": "*",

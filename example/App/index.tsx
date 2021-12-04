@@ -1,28 +1,29 @@
 import React, {useState} from 'react';
 import {
+  I18nManager,
+  Pressable,
+  SafeAreaView,
+  StatusBar,
+  Switch,
   Text,
   View,
-  Switch,
-  StatusBar,
-  Pressable,
-  I18nManager,
-  SafeAreaView,
 } from 'react-native';
 import styles from './styles';
 import GlobalDateTimePicker, {
   CalendarType,
-  weekDaysJalali,
-  yearMonthsJalali,
+  DateTimePickerMode,
   DateTimePickerThemes,
   DateTimePickerTranslations,
+  weekDaysJalali,
+  yearMonthsJalali,
 } from 'react-native-global-datetimepicker';
 
 export default function App() {
   const [Theme, setTheme] = useState(DateTimePickerThemes.MFCP);
   const [Calendar, setCalendar] = useState(CalendarType.Gregorian);
+  const [PickerMode, setPickerMode] = useState<DateTimePickerMode>();
   const [SelectedDateJalali, setSelectedDateJalali] = useState<Date>();
   const [SelectedDateGregorian, setSelectedDateGregorian] = useState<Date>();
-  const [ShowDateTimePicker, setShowDateTimePicker] = useState(false);
 
   let isGregorian = Calendar === CalendarType.Gregorian;
 
@@ -30,6 +31,12 @@ export default function App() {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
+        {SelectedDateGregorian && (
+          <Text style={styles.gregorian_date_text}>
+            {SelectedDateGregorian.getHours()}:
+            {SelectedDateGregorian.getMinutes()}
+          </Text>
+        )}
         {SelectedDateGregorian && (
           <Text style={styles.gregorian_date_text}>
             {SelectedDateGregorian.toDateString()}
@@ -52,12 +59,12 @@ export default function App() {
           ]}>
           <Pressable
             style={styles.button}
-            onPress={() => setShowDateTimePicker(true)}
+            onPress={() => setPickerMode(DateTimePickerMode.Day)}
             android_ripple={{
               borderless: true,
               color: Theme.SelectedDayText,
             }}>
-            <Text style={styles.button_text}>Select Date</Text>
+            <Text style={styles.button_text}>Select Date And Time</Text>
           </Pressable>
         </View>
         <View style={styles.switch_container}>
@@ -123,7 +130,8 @@ export default function App() {
         <GlobalDateTimePicker
           theme={Theme}
           calendar={Calendar}
-          visible={ShowDateTimePicker}
+          mode={PickerMode}
+          visible={PickerMode != undefined}
           initialDate={SelectedDateGregorian}
           persianNumber={Calendar === CalendarType.Jalali}
           translation={
@@ -132,11 +140,18 @@ export default function App() {
               : DateTimePickerTranslations.DEFAULT
           }
           onSelect={(gregorianDate, jalaliDate) => {
-            setShowDateTimePicker(false);
-            setSelectedDateJalali(jalaliDate);
-            setSelectedDateGregorian(gregorianDate);
+            if (
+              PickerMode == DateTimePickerMode.Year ||
+              PickerMode == DateTimePickerMode.Day
+            ) {
+              setPickerMode(DateTimePickerMode.Hour);
+            } else {
+              setPickerMode(undefined);
+              setSelectedDateJalali(jalaliDate);
+              setSelectedDateGregorian(gregorianDate);
+            }
           }}
-          onCancel={() => setShowDateTimePicker(false)}
+          onCancel={() => setPickerMode(undefined)}
         />
       </SafeAreaView>
     </>

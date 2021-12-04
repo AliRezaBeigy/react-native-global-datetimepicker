@@ -5,6 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#232323',
   },
   gregorian_date_text: {
     fontSize: 32,

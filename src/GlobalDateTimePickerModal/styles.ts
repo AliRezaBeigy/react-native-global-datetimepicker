@@ -10,4 +10,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(40,40,40,0.19)',
   },
+  content: {
+    padding: 12,
+  },
 });
