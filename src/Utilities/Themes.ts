@@ -1,5 +1,6 @@
 const DateTimePickerThemes = {
   Primary: {
+    Arrow: '#3b3b3b',
     DayText: '#232323',
     HeaderDay: '#90E0EF',
     HeaderYear: '#90E0EF',
@@ -25,6 +26,7 @@ const DateTimePickerThemes = {
     ClockPointer: '#0077B6',
   },
   Danger: {
+    Arrow: '#3b3b3b',
     DayText: '#232323',
     HeaderDay: '#eb7f8e',
     HeaderYear: '#eb7f8e',
@@ -50,6 +52,7 @@ const DateTimePickerThemes = {
     ClockPointer: '#C71F37',
   },
   MFCP: {
+    Arrow: '#3b3b3b',
     DayText: '#232323',
     HeaderDay: '#ffc4c9',
     HeaderYear: '#ffc4c9',

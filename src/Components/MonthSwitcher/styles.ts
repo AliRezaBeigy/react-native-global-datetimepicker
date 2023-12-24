@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   arrow: {
     width: 30,
-    height: 30,
+    height: 30
   },
   months_text: {
     fontSize: 15,

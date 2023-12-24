@@ -117,6 +117,7 @@ export default function App() {
   own theme, the interface is like:
 ```js
 const MFCP = {
+    Arrow: '#3b3b3b',
     DayText: '#232323',
     HeaderDay: '#ffc4c9',
     HeaderYear: '#ffc4c9',

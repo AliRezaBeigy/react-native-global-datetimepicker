@@ -17,7 +17,7 @@ export default function MonthSwitcher() {
         <Pressable
           onPress={onBackMonth}
           android_ripple={{borderless: true, color: theme.ButtonRipple}}>
-          <Image source={Assets.back()} style={styles.arrow} />
+          <Image source={Assets.back()} style={[styles.arrow, {tintColor: theme.ButtonRipple}]} />
         </Pressable>
       </View>
       <Text style={[styles.months_text, {color: theme.DayText}]}>
@@ -32,7 +32,7 @@ export default function MonthSwitcher() {
         <Pressable
           onPress={onForwardMonth}
           android_ripple={{borderless: true, color: theme.ButtonRipple}}>
-          <Image source={Assets.forward()} style={styles.arrow} />
+          <Image source={Assets.forward()} style={[styles.arrow, {tintColor: theme.ButtonRipple}]} />
         </Pressable>
       </View>
     </View>
