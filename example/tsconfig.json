@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "react-native-global-datetimepicker": [
+        "../src/index"
+      ]
+    }
+  },
+  "extends": "@react-native/typescript-config/tsconfig.json"
+}

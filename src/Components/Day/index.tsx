@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import styles from './styles';
 import {Pressable, Text, View} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
+import {getDateUTCString} from "../../Utilities";
 
 export interface DayInfo {
   value: Date;
@@ -48,7 +49,7 @@ export default function Day({value, label, selected, onPressDay}: Props) {
             },
             ...(selected
               ? [selectedDayTextStyle]
-              : value?.toDateString() === today.toDateString()
+              : getDateUTCString(value) === getDateUTCString(today)
               ? [styles.today_text, {color: theme.TodayDayText}]
               : []),
           ]}>
@@ -77,7 +78,7 @@ export default function Day({value, label, selected, onPressDay}: Props) {
           {color: theme.DayText, fontSize: persianNumber ? 18 : 15},
           ...(isSelected.current
             ? [selectedDayTextStyle]
-            : value?.toDateString() === today.toDateString()
+            : getDateUTCString(value) === getDateUTCString(today)
             ? [styles.today_text, {color: theme.TodayDayText}]
             : []),
         ],

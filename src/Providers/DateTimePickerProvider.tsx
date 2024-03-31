@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, PropsWithChildren} from 'react';
 import Themes from '../Utilities/Themes';
 import Translations from '../Utilities/Translations';
 import {convertGregorianToJalali} from '../Utilities';
@@ -57,7 +57,7 @@ export const DateTimePickerContext =
     translation: Translations.DEFAULT,
   });
 
-interface Props {
+interface Props extends PropsWithChildren {
   initialDate?: Date;
   persianNumber?: boolean;
   calendar?: CalendarType;

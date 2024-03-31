@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import styles from './styles';
 import Day, {DayInfo} from '../Day';
 import {FlatList} from 'react-native';
-import {getMonthDays} from '../../Utilities';
+import {getDateUTCString, getMonthDays} from '../../Utilities';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
 
 export interface Props {
@@ -35,10 +35,10 @@ export default function Days({onPressDay}: Props) {
           value={item.value}
           label={item.label}
           onPressDay={onPressDay}
-          selected={item?.value?.toDateString() === selectedDate.toDateString()}
+          selected={getDateUTCString(item?.value) === getDateUTCString(selectedDate)}
         />
       )}
-      keyExtractor={(item, i) => item.value?.toDateString() ?? `${i}`}
+      keyExtractor={(item, i) => getDateUTCString(item.value) ?? `${i}`}
     />
   );
 }
