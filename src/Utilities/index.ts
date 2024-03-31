@@ -6,8 +6,9 @@ export const getMonthDays = (
     month: number,
     persianNumber: boolean,
 ): DayInfo[] => {
-    let dayCount = new Date(year, month + 1, 0, 12).getDate();
-    let startDay = new Date(year, month, 1, 12).getDay() - 1;
+    let dayCount = persianNumber ? jalaaliMonthLength(year, month) : new Date(year, month + 1, 0, 12).getDate();
+    const date = new Date(year, month, 1, 12)
+    let startDay = (persianNumber ? (convertJalaliToGregorian(date).getDay()) : (date.getDay() - 1));
 
     return <DayInfo[]>Array.from({length: startDay + dayCount}, (_, i) => {
         if (i < startDay) {
@@ -21,6 +22,41 @@ export const getMonthDays = (
         };
     });
 };
+
+
+export const jalaaliMonthLength = (jy: number, jm: number) => {
+    if (jm <= 6) return 31
+    if (jm <= 11) return 30
+    if (jalCalLeap(jy) === 0) return 30
+    return 29
+}
+export const jalCalLeap = (jy: number) => {
+    let bl = breaks.length
+        , jp = breaks[0]
+        , jm
+        , jump = 0
+        , leap
+        , n
+        , i
+
+    for (i = 1; i < bl; i += 1) {
+        jm = breaks[i]
+        jump = jm - jp
+        if (jy < jm)
+            break
+        jp = jm
+    }
+    n = jy - jp
+
+    if (jump - n < 6)
+        n = n - jump + div(jump + 4, 33) * 33
+    leap = mod(mod(n + 1, 33) - 1, 4)
+    if (leap === -1) {
+        leap = 4
+    }
+
+    return leap
+}
 
 export const getDateUTCString = (
     date?: Date
