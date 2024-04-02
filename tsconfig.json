@@ -42,6 +42,5 @@
   ],
   "include": [
     "src"
-  ],
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  ]
 }
