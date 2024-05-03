@@ -8,17 +8,17 @@ export enum CalendarType {
   Jalali,
 }
 
-export enum DataTimePickerMode {
-    Date,
-    Time,
-    DateTime
+export enum DateTimePickerMode {
+  Date,
+  Time,
+  DateTime,
 }
 
 export enum PickerMode {
-    Day,
-    Year,
-    Hour,
-    Minute,
+  Day,
+  Year,
+  Hour,
+  Minute,
 }
 
 interface DateTimePickerState {
@@ -121,7 +121,7 @@ const DateTimePickerProvider: React.FC<Props> = ({
         translation: DateTimePicker.translation,
         selectedDate: DateTimePicker.selectedDate,
         persianNumber: DateTimePicker.persianNumber,
-        setYear: year => {
+        setYear: (year) => {
           DateTimePicker.selectedDate.setFullYear(year);
           setDateTimePicker({
             ...DateTimePicker,
@@ -130,27 +130,27 @@ const DateTimePickerProvider: React.FC<Props> = ({
             selectedDate: DateTimePicker.selectedDate,
           });
         },
-        setHour: hour => {
+        setHour: (hour) => {
           DateTimePicker.selectedDate.setHours(hour);
           setDateTimePicker({
             ...DateTimePicker,
             selectedDate: new Date(DateTimePicker.selectedDate),
           });
         },
-        setMinute: minute => {
+        setMinute: (minute) => {
           DateTimePicker.selectedDate.setMinutes(minute);
           setDateTimePicker({
             ...DateTimePicker,
             selectedDate: new Date(DateTimePicker.selectedDate),
           });
         },
-        setPickerMode: mode => {
+        setPickerMode: (mode) => {
           setDateTimePicker({...DateTimePicker, pickerMode: mode});
         },
-        setMonth: month => {
+        setMonth: (month) => {
           setDateTimePicker({...DateTimePicker, month: month});
         },
-        setSelectedDate: date => {
+        setSelectedDate: (date) => {
           setDateTimePicker({...DateTimePicker, selectedDate: date});
         },
         setYearMonth: (year, month) => {
