@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   input: {
-    width: 65,
+    width: 75,
     height: 70,
     fontSize: 38,
     borderRadius: 3,

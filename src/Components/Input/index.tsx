@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, TextInput} from 'react-native';
+import {Platform, Pressable, TextInput} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
 import styles from './styles';
 
@@ -27,8 +27,9 @@ export default function Input({value, onChange, selected, onPress}: Props) {
       <TextInput
         value={Value}
         editable={Focus}
+        onPressIn={Platform.OS === 'ios' ? onPress : undefined}
         underlineColorAndroid="transparent"
-        onChangeText={text => {
+        onChangeText={(text) => {
           setValue(text);
           onChange(parseInt(text));
         }}
