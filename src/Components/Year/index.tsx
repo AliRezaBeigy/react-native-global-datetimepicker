@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styles from './styles';
-import {Pressable, Text, View} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
+import {Animated, Easing, Pressable, Text, View} from 'react-native';
 
 export interface DayInfo {
   value: string;
@@ -19,6 +19,7 @@ export default function Year({value, label, selected, onPressYear}: Props) {
   const {theme, persianNumber} = useDateTimePicker();
   const isSelected = useRef(selected);
   const labelRef = useRef<Text>(null);
+  const opacityRef = useRef(new Animated.Value(0));
 
   useEffect(() => {
     isSelected.current = selected;
@@ -26,23 +27,34 @@ export default function Year({value, label, selected, onPressYear}: Props) {
 
   const selectedDayTextStyle = {color: theme.SelectedDayText};
 
+  Animated.timing(opacityRef.current, {
+    toValue: 0,
+    duration: 125,
+    easing: Easing.in(Easing.quad),
+    useNativeDriver: true,
+  }).start();
+
   return (
     <View style={styles.year_container}>
-      <View
+      <Animated.View
         style={[
-          styles.year,
-          ...(selected ? [{backgroundColor: theme.SelectedDay}] : []),
-        ]}>
+          styles.year_ripple,
+          ...(selected
+            ? [{backgroundColor: theme.SelectedDay}]
+            : [
+                {
+                  backgroundColor: theme.SelectDayRipple,
+                  opacity: opacityRef.current,
+                },
+              ]),
+        ]}
+      />
+      <View style={[styles.year]}>
         <Pressable
           onPressIn={onPressIn}
           onPressOut={onPressOut}
           style={styles.year_content}
-          onPress={() => (label ? onPressYear(value) : undefined)}
-          android_ripple={
-            label
-              ? {borderless: true, color: theme?.SelectDayRipple}
-              : undefined
-          }>
+          onPress={() => (label ? onPressYear(value) : undefined)}>
           <Text
             ref={labelRef}
             style={[
@@ -65,6 +77,13 @@ export default function Year({value, label, selected, onPressYear}: Props) {
 
   function onPressIn() {
     setTimeout(() => {
+      if (opacityRef.current)
+        Animated.timing(opacityRef.current, {
+          toValue: 1,
+          duration: 125,
+          easing: Easing.in(Easing.quad),
+          useNativeDriver: true,
+        }).start();
       if (labelRef.current)
         labelRef.current.setNativeProps({
           style: [
@@ -76,6 +95,12 @@ export default function Year({value, label, selected, onPressYear}: Props) {
   }
 
   function onPressOut() {
+    Animated.timing(opacityRef.current, {
+      toValue: 0,
+      duration: 125,
+      easing: Easing.in(Easing.quad),
+      useNativeDriver: true,
+    }).start();
     if (labelRef.current)
       labelRef.current.setNativeProps({
         style: [

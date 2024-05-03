@@ -14,6 +14,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  day_ripple: {
+    width: '100%',
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+    position: 'absolute',
+  },
   today_text: {
     fontWeight: 'bold',
   },
