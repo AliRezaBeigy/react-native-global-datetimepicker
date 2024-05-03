@@ -1,7 +1,8 @@
 import React from 'react';
 import DateTimePickerProvider, {
   CalendarType,
-  DateTimePickerMode,
+  DataTimePickerMode,
+  PickerMode,
 } from './Providers/DateTimePickerProvider';
 import Themes from './Utilities/Themes';
 import Translations from './Utilities/Translations';
@@ -13,7 +14,7 @@ export interface Props {
   onCancel?: () => void;
   persianNumber?: boolean;
   calendar?: CalendarType;
-  mode?: DateTimePickerMode;
+  mode?: DataTimePickerMode;
   theme?: typeof Themes.Primary;
   translation?: typeof Translations.DEFAULT;
   onSelect?: (gregorianDate: Date, jalaliDate: Date) => void;
@@ -30,13 +31,13 @@ export default function GlobalDateTimePicker({
 }: Props) {
   return (
     <DateTimePickerProvider
-      mode={mode}
+      mode={mode === DataTimePickerMode.Time ? PickerMode.Hour : PickerMode.Day}
       theme={theme}
       calendar={calendar}
       initialDate={initialDate}
       translation={translation}
       persianNumber={persianNumber}>
-      <GlobalDateTimePickerModal {...props} />
+      <GlobalDateTimePickerModal {...props} mode={mode}/>
     </DateTimePickerProvider>
   );
 }

@@ -1,4 +1,6 @@
+import styles from './styles';
 import React, {useState} from 'react';
+import {DataTimePickerMode} from "../src/Providers/DateTimePickerProvider.tsx";
 import {
     I18nManager,
     Pressable,
@@ -8,10 +10,8 @@ import {
     Text,
     View,
 } from 'react-native';
-import styles from './styles';
 import GlobalDateTimePicker, {
     CalendarType,
-    DateTimePickerMode,
     DateTimePickerThemes,
     DateTimePickerTranslations,
     weekDaysJalali,
@@ -21,9 +21,9 @@ import GlobalDateTimePicker, {
 export default function App() {
     const [Theme, setTheme] = useState(DateTimePickerThemes.MFCP);
     const [Calendar, setCalendar] = useState(CalendarType.Gregorian);
-    const [PickerMode, setPickerMode] = useState<DateTimePickerMode>();
     const [SelectedDateJalali, setSelectedDateJalali] = useState<Date>();
     const [SelectedDateGregorian, setSelectedDateGregorian] = useState<Date>();
+    const [PickerMode, setPickerMode] = useState<DataTimePickerMode>();
 
     let isGregorian = Calendar === CalendarType.Gregorian;
 
@@ -59,7 +59,7 @@ export default function App() {
                     ]}>
                     <Pressable
                         style={styles.button}
-                        onPress={() => setPickerMode(DateTimePickerMode.Day)}
+                        onPress={() => setPickerMode(DataTimePickerMode.DateTime)}
                         android_ripple={{
                             borderless: true,
                             color: Theme.SelectedDayText,
@@ -140,18 +140,9 @@ export default function App() {
                             : DateTimePickerTranslations.DEFAULT
                     }
                     onSelect={(gregorianDate, jalaliDate) => {
-                        if (
-                            PickerMode == DateTimePickerMode.Year ||
-                            PickerMode == DateTimePickerMode.Day
-                        ) {
-                            setSelectedDateJalali(jalaliDate);
-                            setSelectedDateGregorian(gregorianDate);
-                            setPickerMode(DateTimePickerMode.Hour);
-                        } else {
-                            setPickerMode(undefined);
-                            setSelectedDateJalali(jalaliDate);
-                            setSelectedDateGregorian(gregorianDate);
-                        }
+                        setPickerMode(undefined);
+                        setSelectedDateJalali(jalaliDate);
+                        setSelectedDateGregorian(gregorianDate);
                     }}
                     onCancel={() => setPickerMode(undefined)}
                 />

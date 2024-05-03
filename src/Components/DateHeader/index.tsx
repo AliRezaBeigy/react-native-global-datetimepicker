@@ -1,13 +1,13 @@
-import React, {memo, useMemo} from 'react';
 import styles from './styles';
-import {weekDaysGregorian, weekDaysJalali, yearMonthsGregorian, yearMonthsJalali,} from '../../Utilities/Contants';
+import React, {memo, useMemo} from 'react';
+import {toPersianNumber} from '../../Utilities';
 import {Pressable, Text, View} from 'react-native';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
-import {CalendarType, DateTimePickerMode,} from '../../Providers/DateTimePickerProvider';
-import {toPersianNumber} from '../../Utilities';
+import {CalendarType, PickerMode} from '../../Providers/DateTimePickerProvider';
+import {weekDaysGregorian, weekDaysJalali, yearMonthsGregorian, yearMonthsJalali,} from '../../Utilities/Contants';
 
 function DateHeader() {
-    const {mode, theme, setMode, calendar, selectedDate, persianNumber} =
+    const {pickerMode, theme, setPickerMode, calendar, selectedDate, persianNumber} =
         useDateTimePicker();
     const date = useMemo(() => {
         let isGregorian = calendar === CalendarType.Gregorian;
@@ -39,17 +39,17 @@ function DateHeader() {
                         ? []
                         : [styles.header_container_jalali]),
                 ]}
-                onPress={() => setMode(mode === DateTimePickerMode.Year ? DateTimePickerMode.Day : DateTimePickerMode.Year)}
+                onPress={() => setPickerMode(pickerMode === PickerMode.Year ? PickerMode.Day : PickerMode.Year)}
                 android_ripple={{borderless: true, color: theme.ButtonRipple}}>
                 <Text>
                     <Pressable
                         android_ripple={{borderless: true, color: theme.ButtonRipple}}
-                        onPress={() => setMode(DateTimePickerMode.Year)}>
+                        onPress={() => setPickerMode(PickerMode.Year)}>
                         <Text
                             style={[
                                 styles.header_year,
                                 {color: theme.HeaderYear},
-                                ...(mode === DateTimePickerMode.Year
+                                ...(pickerMode === PickerMode.Year
                                     ? [{color: theme.HeaderSelectedMode}]
                                     : []),
                             ]}>
@@ -60,12 +60,12 @@ function DateHeader() {
                     </Pressable>
                 </Text>
                 <Text>
-                    <Pressable onPress={() => setMode(DateTimePickerMode.Day)}>
+                    <Pressable onPress={() => setPickerMode(PickerMode.Day)}>
                         <Text
                             style={[
                                 styles.header_date,
                                 {color: theme.HeaderDay},
-                                ...(mode === DateTimePickerMode.Day
+                                ...(pickerMode === PickerMode.Day
                                     ? [{color: theme.HeaderSelectedMode}]
                                     : []),
                             ]}>

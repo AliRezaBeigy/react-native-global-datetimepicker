@@ -2,20 +2,20 @@ import React, {useEffect, useRef} from 'react';
 import {toPersianNumber} from '../../Utilities';
 import useDateTimePicker from '../../Hooks/useDateTimePicker';
 import {Animated, GestureResponderEvent, Text, View} from 'react-native';
-import {DateTimePickerMode} from '../../Providers/DateTimePickerProvider';
+import {PickerMode} from '../../Providers/DateTimePickerProvider';
 
 export default function Clock() {
   const {
     theme,
-    mode,
+    pickerMode,
     setHour,
-    setMode,
+    setPickerMode,
     setMinute,
     selectedDate,
     persianNumber,
   } = useDateTimePicker();
 
-  const isHourMode = mode === DateTimePickerMode.Hour;
+  const isHourMode = pickerMode === PickerMode.Hour;
   const value = isHourMode
     ? selectedDate.getHours()
     : selectedDate.getMinutes();
@@ -77,7 +77,7 @@ export default function Clock() {
 
   useEffect(() => {
     onChangeValue(true, valueToAngle(value));
-  }, [mode, value]);
+  }, [pickerMode, value]);
 
   const onRelease = (e: GestureResponderEvent) => {
     if (e.timeStamp - lastTouch.current > 250) {
@@ -93,7 +93,7 @@ export default function Clock() {
     const resultValue = angleToValue(result);
 
     if (isHourMode && resultValue == lastHour.current) {
-      setMode(DateTimePickerMode.Minute);
+      setPickerMode(PickerMode.Minute);
     }
     lastHour.current = selectedDate.getHours();
   };

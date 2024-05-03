@@ -4,10 +4,10 @@ import useDateTimePicker from '../../Hooks/useDateTimePicker';
 import styles from './styles';
 import Input from '../Input';
 import PeriodSelector from '../PeriodSelector';
-import {DateTimePickerMode} from '../../Providers/DateTimePickerProvider';
+import {PickerMode} from '../../Providers/DateTimePickerProvider';
 
 export default function TimeHeader() {
-  const {theme, selectedDate, setMinute, setHour, mode, setMode} =
+  const {theme, selectedDate, setMinute, setHour, pickerMode, setPickerMode} =
     useDateTimePicker();
 
   const isPM = selectedDate.getHours() >= 12;
@@ -20,8 +20,8 @@ export default function TimeHeader() {
         <View style={styles.input_container}>
           <Input
             value={selectedDate.getHours() % 12}
-            selected={mode === DateTimePickerMode.Hour}
-            onPress={() => setMode(DateTimePickerMode.Hour)}
+            selected={pickerMode === PickerMode.Hour}
+            onPress={() => setPickerMode(PickerMode.Hour)}
             onChange={value =>
               isNaN(value) || setHour(isPM ? (value % 12) + 12 : value)
             }
@@ -31,8 +31,8 @@ export default function TimeHeader() {
           </Text>
           <Input
             value={selectedDate.getMinutes()}
-            selected={mode === DateTimePickerMode.Minute}
-            onPress={() => setMode(DateTimePickerMode.Minute)}
+            selected={pickerMode === PickerMode.Minute}
+            onPress={() => setPickerMode(PickerMode.Minute)}
             onChange={value => isNaN(value) || setMinute(value)}
           />
           <PeriodSelector />
