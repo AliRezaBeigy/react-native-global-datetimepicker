@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useMemo, useRef} from 'react';
 import styles from './styles';
 import Buttons from '../Components/Buttons';
 import {Props} from '../GlobalDateTimePicker';
@@ -34,7 +34,7 @@ export default function GlobalDateTimePickerModal({
     setPickerMode,
     theme,
   } = useDateTimePicker();
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(1)).current;
   const years = useMemo(
     () =>
       Array.from({length: 200}, (_, k) => k + 1)
@@ -67,25 +67,6 @@ export default function GlobalDateTimePickerModal({
       }
     }
   };
-
-  useEffect(() => {
-    const duration = 150;
-    setTimeout(() => {
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: duration,
-        useNativeDriver: false,
-      }).start(() => {
-        setPickerMode(pickerMode);
-
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: duration,
-          useNativeDriver: false,
-        }).start();
-      });
-    }, duration);
-  }, [pickerMode]);
 
   let content = null;
 
