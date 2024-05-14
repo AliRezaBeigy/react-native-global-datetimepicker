@@ -8,14 +8,18 @@ export default StyleSheet.create({
   button_container: {
     borderRadius: 8,
     overflow: 'hidden',
-    paddingVertical: 10,
+    paddingTop: 10,
+    paddingBottom: 5,
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 8,
+    padding: 6,
   },
   button_ok: {
     width: 64,
+    marginStart: 10,
   },
   button_cancel: {
     width: 78,

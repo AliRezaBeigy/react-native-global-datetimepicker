@@ -54,13 +54,13 @@ export default function GlobalDateTimePickerModal({
     if (onCancel) onCancel();
   };
   const onOk = () => {
-    if (onSelect) {
-      if (mode === DateTimePickerMode.DateTime && pickerMode === PickerMode.Day)
-        setPickerMode(PickerMode.Hour);
-      else {
-        setPickerMode(
-          mode === DateTimePickerMode.Time ? PickerMode.Hour : PickerMode.Day,
-        );
+    if (mode === DateTimePickerMode.DateTime && pickerMode === PickerMode.Day)
+      setPickerMode(PickerMode.Hour);
+    else {
+      setPickerMode(
+        mode === DateTimePickerMode.Time ? PickerMode.Hour : PickerMode.Day,
+      );
+      if (onSelect) {
         if (calendar === CalendarType.Jalali)
           onSelect(convertJalaliToGregorian(selectedDate), selectedDate);
         else onSelect(selectedDate, convertGregorianToJalali(selectedDate));

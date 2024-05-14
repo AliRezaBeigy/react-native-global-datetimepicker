@@ -16,17 +16,27 @@ export default function Buttons({onOk, onCancel}: Props) {
       <View style={styles.button_container}>
         <Pressable
           onPress={onCancel}
-          style={[styles.button, styles.button_cancel]}
+          style={[
+            styles.button,
+            styles.button_cancel,
+            {backgroundColor: theme.HeaderBackground},
+          ]}
           android_ripple={{borderless: true, color: theme.ButtonRipple}}>
-          <Text style={{color: theme.DayText}}>{translation?.cancel}</Text>
+          <Text style={{color: theme.SelectedDayText}}>
+            {translation?.cancel}
+          </Text>
         </Pressable>
       </View>
       <View style={styles.button_container}>
         <Pressable
           onPress={onOk}
-          style={[styles.button, styles.button_ok]}
+          style={[
+            styles.button,
+            styles.button_ok,
+            {backgroundColor: theme.HeaderBackground},
+          ]}
           android_ripple={{borderless: true, color: theme.ButtonRipple}}>
-          <Text style={{color: theme.DayText}}>{translation?.ok}</Text>
+          <Text style={{color: theme.SelectedDayText}}>{translation?.ok}</Text>
         </Pressable>
       </View>
     </View>
