@@ -1,6 +1,6 @@
 {
   "name": "react-native-global-datetimepicker",
-  "version": "2.3.5",
+  "version": "2.3.7",
   "description": "react native multi culture datetime picker",
   "main": "lib/index.js",
   "module": "lib/index.js",

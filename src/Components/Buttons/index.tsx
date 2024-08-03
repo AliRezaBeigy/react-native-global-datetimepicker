@@ -31,10 +31,10 @@ export default function Buttons({onOk, onCancel}: Props) {
           style={[
             styles.button,
             styles.button_ok,
-            {backgroundColor: theme.HeaderBackground},
+            {backgroundColor: theme.OkBackground},
           ]}
           android_ripple={{borderless: true, color: theme.ButtonRipple}}>
-          <Text style={{color: theme.HeaderDay}}>{translation?.ok}</Text>
+          <Text style={{color: theme.OkText}}>{translation?.ok}</Text>
         </Pressable>
       </View>
     </View>
