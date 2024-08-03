@@ -27,6 +27,7 @@ export default function Input({value, onChange, selected, onPress}: Props) {
       <TextInput
         value={Value}
         editable={Focus}
+        keyboardType="number-pad"
         onPressIn={Platform.OS === 'ios' ? onPress : undefined}
         underlineColorAndroid="transparent"
         onChangeText={(text) => {
