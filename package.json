@@ -1,13 +1,13 @@
 {
   "name": "react-native-global-datetimepicker",
-  "version": "2.3.9",
+  "version": "2.5.0",
   "description": "react native multi culture datetime picker",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "react-native": "lib/index.js",
   "scripts": {
-    "build": "tsc && cp src/Assets/*.png lib/Assets/",
+    "build": "tsc && cp src/Assets/*.png lib/Assets/ && cp -r src/shims lib/shims",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn"
   },
@@ -57,6 +57,12 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-multiple-modals": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-multiple-modals": {
+      "optional": true
+    }
   }
 }

@@ -1,8 +1,10 @@
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
-const path = require("path");
-const pak = require("../package.json");
+const path = require('path');
+const fs = require('fs');
+const pak = require('../package.json');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 const escape = require('escape-string-regexp');
+const defaultResolveRequest = require('metro-resolver').resolve;
 
 /**
  * Metro configuration
@@ -14,6 +16,8 @@ const modules = Object.keys({
     ...pak.peerDependencies,
 });
 const root = path.resolve(__dirname, '..');
+const multipleModalsShim = path.resolve(root, 'src/shims/react-native-multiple-modals.js');
+const defaultResolveRequest = require('metro-resolver').resolve;
 const config = {
     watchFolders: [root],
     resolver: {
@@ -27,6 +31,28 @@ const config = {
             acc[name] = path.join(__dirname, 'node_modules', name);
             return acc;
         }, {}),
+
+        resolveRequest: (context, moduleName, platform) => {
+            if (moduleName === 'react-native-multiple-modals') {
+                const installedModulePath = path.join(
+                    __dirname,
+                    'node_modules',
+                    moduleName,
+                    'package.json',
+                );
+
+                if (fs.existsSync(installedModulePath)) {
+                    return defaultResolveRequest(context, moduleName, platform);
+                }
+
+                return {
+                    filePath: multipleModalsShim,
+                    type: 'sourceFile',
+                };
+            }
+
+            return defaultResolveRequest(context, moduleName, platform);
+        },
     },
 };
 

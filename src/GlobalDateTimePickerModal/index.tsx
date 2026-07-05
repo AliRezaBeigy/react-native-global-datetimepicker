@@ -7,7 +7,8 @@ import YearPicker from '../Components/YearPicker';
 import TimePicker from '../Components/TimePicker';
 import DateHeader from '../Components/DateHeader';
 import useDateTimePicker from '../Hooks/useDateTimePicker';
-import {Animated, Modal, Pressable, View} from 'react-native';
+import {View, Animated} from 'react-native';
+import PickerModal from '../Components/PickerModal';
 import {
   CalendarType,
   DateTimePickerMode,
@@ -108,17 +109,12 @@ export default function GlobalDateTimePickerModal({
     );
   }
   return (
-    <Modal
+    <PickerModal
       visible={visible}
-      transparent={true}
       onDismiss={cancel}
-      animationType="fade"
-      onRequestClose={cancel}>
-      <Pressable onPress={cancel} style={styles.container_pressable}>
-        <View style={styles.container}>
-          <Pressable>{content}</Pressable>
-        </View>
-      </Pressable>
-    </Modal>
+      containerPressableStyle={styles.container_pressable}
+      containerStyle={styles.container}>
+      {content}
+    </PickerModal>
   );
 }
